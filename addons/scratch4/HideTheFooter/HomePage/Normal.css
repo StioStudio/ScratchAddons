@@ -1,0 +1,10 @@
+/* the footer */
+#footer {
+    display: none;
+}
+.inner.mod-splash:not(.inner.mod-splash:nth-of-type(1)) {
+    margin-top: 0px;
+}
+body, #content {
+    padding-bottom: 0px;
+}

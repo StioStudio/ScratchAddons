@@ -1,0 +1,171 @@
+/* title on box (h4) */
+.box-header h4 {
+    border-radius: 100px;
+    padding: 15px;
+    color: var(--button-text-color) !important;
+    padding-left: 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 40px 40px;
+    
+    background-image: url(Icons/QuestionMark.svg);
+    background-color: var(--projects-color-c-3);
+
+}
+
+/* view all link on box (a) */
+.box-header a {
+    /* display: none ; */
+    height: 17.594px;
+    width: 17.594px;
+    border-radius: 100px;
+    padding: 15px;
+    font-size: 0px;
+    float: right;
+    background-color: var(--projects-color-c-3);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 40px 40px;
+    background-image: url(Icons/ViewAll.svg) !important;
+}
+.box-header a:empty {
+    display: none;
+}
+
+/* SA-activity */
+.SA-activity {
+    width: calc(55% - 20px) !important;
+    max-height: calc(var(--box-header-height)+var(--activity-box-content-max-hight));
+}
+.SA-activity .box-header h4, .SA-activity .box-header a{
+    background-image: url(Icons/WhatIsNew.svg);
+    background-color: var(--projects-color-a-3) !important;
+}
+.SA-activity .box-header {
+    background-color: var(--projects-color-a-1) !important;
+}
+.SA-activity .box-content {
+    background-color: var(--projects-color-a-2) !important;
+    padding-bottom: 0px;
+}
+.SA-activity span {
+    color: var(--main-text-color) !important;
+}
+.activity-ul::-webkit-scrollbar {
+    width: 15px;
+}
+.activity-ul::-webkit-scrollbar-track {
+    background: var(--scrollbar-gray);
+    border: 5px solid var(--box-gray);
+    border-radius: 100px;
+}
+.activity-ul::-webkit-scrollbar-thumb {
+    background: var(--main-blue);
+    border-radius: 100px;
+}
+.activity-ul {
+    height: 100%;
+    max-height: var(--activity-box-content-max-hight);
+}
+
+/* SA-scratchNews */
+.SA-scratchNews {
+    width: 45% !important;
+}
+.SA-scratchNews .box-header h4, .SA-scratchNews .box-header a {
+    background-image: url(Icons/ScratchNews.svg);
+    background-color: var(--projects-color-a-3) !important;
+}
+.SA-scratchNews .box-header {
+    background-color: var(--projects-color-a-1) !important;
+}
+.SA-scratchNews .box-content {
+    background-color: var(--projects-color-a-2) !important;
+}
+.SA-scratchNews p {
+    color: var(--main-text-color) !important;
+}
+
+/* SA-featuredProject */
+.SA-featuredProject .box-header h4, .SA-featuredProject .box-header a {
+    background-image: url(Icons/FeaturedProjects.svg);
+    background-color: var(--projects-color-a-3) !important;
+}
+.SA-featuredProject .box-header {
+    background-color: var(--projects-color-a-1) !important;
+}
+.SA-featuredProject .box-content {
+    background-color: var(--projects-color-a-2) !important;
+}
+
+/* SA-featuredStudios */
+.SA-featuredStudios .box-header h4, .SA-featuredStudios .box-header a {
+    background-image: url(Icons/FeaturedStudios.svg);
+    background-color: var(--projects-color-a-3) !important;
+}
+.SA-featuredStudios .box-header {
+    background-color: var(--projects-color-a-1) !important;
+}
+.SA-featuredStudios .box-content {
+    background-color: var(--projects-color-a-2) !important;
+}
+
+/* SA-scratch-design-studio */
+.SA-scratch-design-studio .box-header h4, .SA-scratch-design-studio .box-header a {
+    background-image: url(Icons/ScratchDesignStudio.svg);
+    background-color: var(--projects-color-c-3) !important;
+}
+.SA-scratch-design-studio .box-header {
+    background-color: var(--projects-color-c-1) !important;
+}
+.SA-scratch-design-studio .box-content {
+    background-color: var(--projects-color-c-2) !important;
+}
+
+/* splash.projectsLovedByScratchersFollowing */
+.SA-projectsLovedByScratchersFollowing .box-header h4, .SA-projectsLovedByScratchersFollowing .box-header a {
+    background-image: url(Icons/LovedByScratchersImFollowing.svg);
+    background-color: var(--projects-color-b-3) !important;
+}
+.SA-projectsLovedByScratchersFollowing .box-header {
+    background-color: var(--projects-color-b-1) !important;
+}
+.SA-projectsLovedByScratchersFollowing .box-content {
+    background-color: var(--projects-color-b-2) !important;
+}
+
+/* SA-communityRemixing */
+.SA-communityRemixing .box-header h4, .SA-communityRemixing .box-header a {
+    background-image: url(Icons/WhatTheCommunityIsRemixing.svg);
+    background-color: var(--projects-color-b-3) !important;
+}
+.SA-communityRemixing .box-header {
+    background-color: var(--projects-color-b-1) !important;
+}
+.SA-communityRemixing .box-content {
+    background-color: var(--projects-color-b-2) !important;
+}
+
+/* SA-communityLoving */
+.SA-communityLoving .box-header h4 {
+    background-image: url(Icons/WhatTheCommunityIsLoving.svg);
+    background-color: var(--projects-color-b-3) !important;
+}
+.SA-communityLoving .box-header {
+    background-color: var(--projects-color-b-1) !important;
+}
+.SA-communityLoving .box-content {
+    background-color: var(--projects-color-b-2) !important;
+}
+
+/* Don't mind this! */
+.scratchtoolsCustomStudio .box-header h4, .scratchtoolsCustomStudio .box-header a {
+    background-image: url(Icons/ScratchTools.svg);
+    background-color: var(--projects-color-d-3) !important;
+}
+.scratchtoolsCustomStudio .box-header {
+    background-color: var(--projects-color-d-1) !important;
+}
+.scratchtoolsCustomStudio .box-content {
+    background-color: var(--projects-color-d-2) !important;
+}

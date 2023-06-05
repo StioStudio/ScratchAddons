@@ -1,0 +1,47 @@
+{
+  "name": "Scratch 4.0",
+  "description": "Makes scratch be styled as \"scratch 4.0\"",
+  "tags": ["community", "recommended", "theme", "beta"],
+  "credits": [
+    {
+      "name": "stio_studio",
+      "link": "https://scratch.mit.edu/users/stio_studio/"
+    },
+    {
+      "name": "JloAu",
+      "link": "https://scratch.mit.edu/users/JloAu"
+    }
+  ],
+  "injectAsStyleElt": false,
+  "dynamicEnable": true,
+  "dynamicDisable": true,
+  "versionAdded": "1.32.0",
+  "settings": [
+    {
+      "name": "Hide Footer",
+      "id": "HideFooter",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "Box Icons",
+      "id": "BoxIcons",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "Box Procjet User Profile Picture",
+      "id": "BoxProcjetUserProfilePicture",
+      "type": "boolean",
+      "default": true
+    }
+  ],
+  "userscripts": [
+    {
+      "url": "HomePage.js",
+      "matches": ["https://scratch.mit.edu/"],
+      "runAtComplete": false
+    }
+  ], 
+  "enabledByDefault": true
+}
