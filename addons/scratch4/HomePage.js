@@ -25,7 +25,6 @@ export default async function ({ addon, console, msg }) {
         --activity-box-content-max-hight: 450px;
         --box-header-height: 47.594px;
         --box-shadow: 0px 0px 15px 3px;
-        --box-shadow-hover: 0px 0px 100px 100px;
     }
 
     @media (prefers-color-scheme: light) {
@@ -156,47 +155,38 @@ export default async function ({ addon, console, msg }) {
     .SA-a-project {
         box-shadow: var(--box-shadow) var(--projects-color-a-5) !important;
     }
-    .SA-a-project:hover {
-        box-shadow: var(--box-shadow-hover) var(--projects-color-a-5) !important;
-    }
     .SA-a-project .box-header h4, .SA-a-project .box-header a{
-      background-color: var(--projects-color-a-3) !important;
+        background-color: var(--projects-color-a-3) !important;
     }
     .SA-a-project .box-header {
-      background-color: var(--projects-color-a-1) !important;
+        background-color: var(--projects-color-a-1) !important;
     }
     .SA-a-project .box-content {
-      background-color: var(--projects-color-a-2) !important;
-      padding-bottom: 0px;
+        background-color: var(--projects-color-a-2) !important;
+        padding-bottom: 0px;
     }
 
     /* SA-b-project */
     .SA-b-project {
-      box-shadow: var(--box-shadow) var(--projects-color-b-5) !important;
-    }
-    .SA-b-project:hover {
-        box-shadow: var(--box-shadow-hover) var(--projects-color-b-5) !important;
+        box-shadow: var(--box-shadow) var(--projects-color-b-5) !important;
     }
     .SA-b-project .box-header h4, .SA-b-project .box-header a{
-      background-color: var(--projects-color-b-3) !important;
+        background-color: var(--projects-color-b-3) !important;
     }
     .SA-b-project .box-header {
-      background-color: var(--projects-color-b-1) !important;
+        background-color: var(--projects-color-b-1) !important;
     }
     .SA-b-project .box-content {
-      background-color: var(--projects-color-b-2) !important;
-      padding-bottom: 0px;
+        background-color: var(--projects-color-b-2) !important;
+        padding-bottom: 0px;
     }
 
     /* SA-c-project */
     .SA-c-project {
-      box-shadow: var(--box-shadow) var(--projects-color-c-5) !important;
-    }
-    .SA-c-project:hover {
-        box-shadow: var(--box-shadow-hover) var(--projects-color-c-5) !important;
+        box-shadow: var(--box-shadow) var(--projects-color-c-5) !important;
     }
     .SA-c-project .box-header h4, .SA-c-project .box-header a{
-      background-color: var(--projects-color-c-3) !important;
+        background-color: var(--projects-color-c-3) !important;
     }
     .SA-c-project .box-header {
         background-color: var(--projects-color-c-1) !important;
@@ -208,10 +198,7 @@ export default async function ({ addon, console, msg }) {
 
     /* SA-d-project */
     .SA-d-project {
-      box-shadow: var(--box-shadow) var(--projects-color-d-5) !important;
-    }
-    .SA-d-project:hover {
-        box-shadow: var(--box-shadow-hover) var(--projects-color-d-5) !important;
+        box-shadow: var(--box-shadow) var(--projects-color-d-5) !important;
     }
     .SA-d-project .box-header h4, .SA-d-project .box-header a{
         background-color: var(--projects-color-d-3) !important;
@@ -456,7 +443,7 @@ export default async function ({ addon, console, msg }) {
         background-color: var(--main-blue);
     }
     #footer a:link {
-    color: #aaddff !important;
+        color: #aaddff !important;
     }
     #footer a:visited {
         color: #bbbbff !important;
