@@ -671,8 +671,7 @@ export default async function ({ addon, console, msg }) {
 
 
     // testing
-    const pattern = new URLPattern("/projects/*", "https://scratch.mit.edu");
+    const pattern = new URLPattern("/*", "https://scratch.mit.edu");
     console.log(pattern.pathname); // /books
     console.log(pattern.test(window.location.href)); // true
-    window.location.href
 }
