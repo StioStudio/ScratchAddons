@@ -438,6 +438,7 @@ export default async function ({ addon, console, msg }) {
         border-top: 1.5px solid var(--footer-border-blue) !important;
         background-color: var(--main-blue);
         color: var(--footer-text-color);
+        transition: 0.5s cubic-bezier(0.25, 0.1, 0.24, 1.2);
     }
     #donor {
         background-color: var(--main-blue);
@@ -661,4 +662,10 @@ export default async function ({ addon, console, msg }) {
             remB()
         }, 50);
     }
+
+    // testing
+    const pattern = new URLPattern("/projects/*", "https://scratch.mit.edu");
+    console.log(pattern.pathname); // /books
+    console.log(pattern.test(window.location.href)); // true
+    window.location.href
 }
