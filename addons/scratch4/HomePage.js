@@ -471,7 +471,7 @@ export default async function ({ addon, console, msg }) {
 
     add("SA-background", `
     /* background to website */
-    #view {
+    #view, body {
         background-color: var(--background-color) !important;
     }
     /*color on navigation bar */
