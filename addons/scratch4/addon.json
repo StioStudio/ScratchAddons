@@ -39,7 +39,7 @@
   "userscripts": [
     {
       "url": "HomePage.js",
-      "matches": ["https://scratch.mit.edu/"],
+      "matches": ["https://scratch.mit.edu/*"],
       "runAtComplete": false
     }
   ], 

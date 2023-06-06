@@ -5,22 +5,31 @@ export default async function ({ addon, console, msg }) {
     })
 
     let head = await addon.tab.waitForElement("head")
-    async function add(_class, _e) {
-        let _element = document.createElement("style")
-        _element.className = _class
-        _element.innerHTML = _e
-        head.append(_element)
+    async function add(_boolean, _class, _e) {
+        if (_boolean) {
+            let _element = document.createElement("style")
+            _element.className = _class
+            _element.innerHTML = _e
+            head.append(_element)
+        }
     }
-    function addbyURL(_class, _URL) {
-        let _element = document.createElement("link")
-        _element.href = _URL
-        _element.rel = "stylesheet"
-        _element.className = _class
-        head.append(_element)
+    function addbyURL(_boolean, _class, _URL) {
+        if (_boolean) {
+            let _element = document.createElement("link")
+            _element.href = _URL
+            _element.rel = "stylesheet"
+            _element.className = _class
+            head.append(_element)
+        }
+    }
+    function matchesURL(_check) {
+        const pattern = new URLPattern(_check, "https://scratch.mit.edu");
+        // console.log(pattern.pathname); // /books
+        return(pattern.test(window.location.href)); // true
     }
     // addbyURL("SA-box-icons", addon.self.dir + "/Box.css")
 
-    add("SA-variables", `
+    add(matchesURL("/*"), "SA-variables", `
     :root {
         --activity-box-content-max-hight: 450px;
         --box-header-height: 47.594px;
@@ -106,51 +115,50 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add("SA-ViewAll-icon", `
+    add(matchesURL("/"), "SA-ViewAll-icon", `
     .box-header a {
         background-image: url(${addon.self.dir}/Icons/ViewAll.svg) !important;
     }
     `)
 
-    if(addon.settings.get("BoxIcons")){
-        add("SA-icons", `
-        .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/QuestionMark.svg);
-        }
-        .SA-activity .box-header h4{
-        background-image: url(${addon.self.dir}/Icons/WhatIsNew.svg);
-        }
-        .SA-scratchNews .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/ScratchNews.svg);
-        }
-        .SA-featuredProject .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/FeaturedProjects.svg);
-        }
-        .SA-featuredStudios .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/FeaturedStudios.svg);
-        }
-        .SA-scratch-design-studio .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/ScratchDesignStudio.svg);
-        }
-        .SA-a-projectsLovedByScratchersFollowing .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/LovedByScratchersImFollowing.svg);
-        }
-        .SA-a-projectsLovedByScratchersFollowing .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/LovedByScratchersImFollowing.svg);
-        }
-        .SA-communityRemixing .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/WhatTheCommunityIsRemixing.svg);
-        }
-        .SA-communityLoving .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/WhatTheCommunityIsLoving.svg);
-        }
-        .scratchtoolsCustomStudio .box-header h4 {
-            background-image: url(${addon.self.dir}/Icons/ScratchTools.svg);
-        }
-        `)
+    add((addon.settings.get("BoxIcons")&&matchesURL("/")), "SA-icons", `
+    .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/QuestionMark.svg);
     }
+    .SA-activity .box-header h4{
+    background-image: url(${addon.self.dir}/Icons/WhatIsNew.svg);
+    }
+    .SA-scratchNews .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/ScratchNews.svg);
+    }
+    .SA-featuredProject .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/FeaturedProjects.svg);
+    }
+    .SA-featuredStudios .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/FeaturedStudios.svg);
+    }
+    .SA-scratch-design-studio .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/ScratchDesignStudio.svg);
+    }
+    .SA-a-projectsLovedByScratchersFollowing .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/LovedByScratchersImFollowing.svg);
+    }
+    .SA-a-projectsLovedByScratchersFollowing .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/LovedByScratchersImFollowing.svg);
+    }
+    .SA-communityRemixing .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/WhatTheCommunityIsRemixing.svg);
+    }
+    .SA-communityLoving .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/WhatTheCommunityIsLoving.svg);
+    }
+    .scratchtoolsCustomStudio .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/ScratchTools.svg);
+    }
+    `)
+    
 
-    add("SA-for-spesific-boxes", `
+    add(matchesURL("/"), "SA-for-spesific-boxes", `
     /* SA-a-project */
     .SA-a-project {
         box-shadow: var(--box-shadow) var(--projects-color-a-5) !important;
@@ -354,7 +362,7 @@ export default async function ({ addon, console, msg }) {
     }*/
     `)
 
-    add("SA-box", `
+    add(matchesURL("/"), "SA-box", `
     /* the whole box */
     .box {
         background-color: var(--box-gray) !important;
@@ -417,7 +425,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add("SA-scrollbar", `
+    add(matchesURL("/"), "SA-scrollbar", `
     .box *::-webkit-scrollbar {
         width: 15px;
     }
@@ -432,7 +440,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add("SA-footer", `
+    add((matchesURL("/*")), "SA-footer", `
     /* the footer */
     #footer {
         border-top: 1.5px solid var(--footer-border-blue) !important;
@@ -457,19 +465,17 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    if(addon.settings.get("HideFooter") === true) {
-        add("SA-hide-footer", `
-        /* the footer */
-        #footer {
-            display: none;
-        }
-        body, #content {
-            padding-bottom: 0px !important;
-        }
-        `)
+    add(addon.settings.get("HideFooter")&&matchesURL("/"), "SA-hide-footer", `
+    /* the footer */
+    #footer {
+        display: none;
     }
+    body, #content {
+        padding-bottom: 0px !important;
+    }
+    `)
 
-    add("SA-background", `
+    add(matchesURL("/"), "SA-background", `
     /* background to website */
     #view, body {
         background-color: var(--background-color) !important;
@@ -483,7 +489,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add("SA-search-input", `
+    add(matchesURL("/"), "SA-search-input", `
     #frc-q-1088, #search-input{
         padding-left: 30px !important;
         padding-right: 30px !important;
@@ -492,7 +498,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add("SA-password-and-username", `
+    add(matchesURL("/"), "SA-password-and-username", `
     .input#frc-username-1088, .input#frc-password-1088 {
         border-radius: 100px;
         z-index: 1;
@@ -500,13 +506,13 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add("SA-hide-arrow-profile", `
+    add(matchesURL("/"), "SA-hide-arrow-profile", `
     .user-info::after, .caret, .account-nav_dropdown-caret-position_295CX {
         display: none !important;
     }
     `)
 
-    add("SA-a-project", `
+    add(matchesURL("/"), "SA-a-project", `
     .img-added .SA-a-project-user-image img {
         border-radius: 5px;
         width: 30px;
@@ -562,7 +568,7 @@ export default async function ({ addon, console, msg }) {
 
     `)
 
-    add("SA-test", `
+    add(matchesURL("/"), "SA-test", `
     .activity-ul::before {
         filter: blur(1px);
         display: block;
@@ -571,107 +577,104 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    // add class
+    if (matchesURL("/")) {
 
-    async function classAdd (_querySelector, _className) {
-        let rem = await addon.tab.waitForElement(_querySelector)
-        rem.classList += _className;
-    }
+        // add class
 
-    // console.log(addon.tab.scratchMessage("Comments"))
-
-    classAdd(".activity", " SA-activity SA-a-project")
-    classAdd(".news", " SA-scratchNews SA-a-project")
-    classAdd(".scratchtoolsCustomStudio", " SA-d-project")
-
-    async function remB(){
-        let rem_a = document.querySelector(".thumbnail-creator:not(.read)")
-        // let rem = document.createElement("div")
-        if (rem_a == undefined) return;
-        rem_a.classList.add("read")
-        let rem_b = rem_a.querySelector("a")
-        // let rem_a = document.createElement("div")
-        // let rem_b = document.createElement("a")
-        let user
-        try {
-
-            user = await (await fetch(rem_b.href.replace("https://", "https://api."))).json()
-        } catch (error) {
-            // console.log(error)
+        async function classAdd (_querySelector, _className) {
+            let rem = await addon.tab.waitForElement(_querySelector)
+            rem.classList += _className;
         }
-        if (!(user.profile == undefined)) {
-            // let img = document.createElement("img")
-            let img
-            new Promise((resolve) => {
-                img = new Image()
-                img.onload = () => resolve(img)
-                img.src = user.profile.images["90x90"]
+
+        // console.log(addon.tab.scratchMessage("Comments"))
+
+        classAdd(".activity", " SA-activity SA-a-project")
+        classAdd(".news", " SA-scratchNews SA-a-project")
+        classAdd(".scratchtoolsCustomStudio", " SA-d-project")
+
+        async function remB(){
+            let rem_a = document.querySelector(".thumbnail-creator:not(.read)")
+            // let rem = document.createElement("div")
+            if (rem_a == undefined) return;
+            rem_a.classList.add("read")
+            let rem_b = rem_a.querySelector("a")
+            // let rem_a = document.createElement("div")
+            // let rem_b = document.createElement("a")
+            let user
+            try {
+
+                user = await (await fetch(rem_b.href.replace("https://", "https://api."))).json()
+            } catch (error) {
+                // console.log(error)
+            }
+            if (!(user.profile == undefined)) {
+                // let img = document.createElement("img")
+                let img
+                new Promise((resolve) => {
+                    img = new Image()
+                    img.onload = () => resolve(img)
+                    img.src = user.profile.images["90x90"]
+                })
+                let rem = document.createElement("a")
+                rem.className = "SA-a-project-user-image"
+                rem.href = rem_b.href
+                rem.append(img)
+                rem_a.insertBefore(rem, rem_b)
+                rem_a.classList.add("img-added")
+            }
+
+            // console.log(rem_a, img)
+        }
+        if(addon.settings.get("BoxProcjetUserProfilePicture")){
+            setInterval(() => {
+                remB()
+            }, 50);
+        }
+
+        await new Promise((resolve, reject) => {
+            setTimeout(async function(){
+                await addon.tab.waitForElement(".inner.mod-splash")
+                resolve();
             })
-            let rem = document.createElement("a")
-            rem.className = "SA-a-project-user-image"
-            rem.href = rem_b.href
-            rem.append(img)
-            rem_a.insertBefore(rem, rem_b)
-            rem_a.classList.add("img-added")
-        }
-
-        // console.log(rem_a, img)
-    }
-    if(addon.settings.get("BoxProcjetUserProfilePicture")){
-        setInterval(() => {
-            remB()
-        }, 50);
-    }
-    
-    await new Promise((resolve, reject) => {
-        setTimeout(async function(){
-            await addon.tab.waitForElement(".inner.mod-splash")
-            resolve();
         })
-    })
 
-    let list_name1 = [
-        addon.tab.scratchMessage("splash.featuredProjects"),
-        addon.tab.scratchMessage("splash.featuredStudios"),
-        addon.tab.scratchMessage("splash.communityRemixing"),
-        addon.tab.scratchMessage("splash.communityLoving"),
-        addon.tab.scratchMessage("splash.projectsLovedByScratchersFollowing"),
-        addon.tab.scratchMessage("splash.scratchDesignStudioTitle"),
-    ]
-    let list_name2 = [
-        " SA-featuredProject SA-a-project",
-        " SA-featuredStudios SA-a-project",
-        " SA-communityRemixing SA-b-project",
-        " SA-communityLoving SA-b-project",
-        " SA-a-projectsLovedByScratchersFollowing SA-b-project",
-        " SA-scratchDesignStudioTitle SA-b-project",
-    ]
-    let rem_elements = [
+        let list_name1 = [
+            addon.tab.scratchMessage("splash.featuredProjects"),
+            addon.tab.scratchMessage("splash.featuredStudios"),
+            addon.tab.scratchMessage("splash.communityRemixing"),
+            addon.tab.scratchMessage("splash.communityLoving"),
+            addon.tab.scratchMessage("splash.projectsLovedByScratchersFollowing"),
+            addon.tab.scratchMessage("splash.scratchDesignStudioTitle"),
+        ]
+        let list_name2 = [
+            " SA-featuredProject SA-a-project",
+            " SA-featuredStudios SA-a-project",
+            " SA-communityRemixing SA-b-project",
+            " SA-communityLoving SA-b-project",
+            " SA-a-projectsLovedByScratchersFollowing SA-b-project",
+            " SA-scratchDesignStudioTitle SA-b-project",
+        ]
+        let rem_elements = [
 
-    ]
-    // console.log(list_name1, list_name2)
+        ]
+        // console.log(list_name1, list_name2)
 
-    async function remA(){
-        while (true) {
-            let rem = await addon.tab.waitForElement(".box .box-header h4", {markAsSeen: true,})
-            rem_elements.push(rem.parentNode.parentNode)
-            // let rem = document.createElement("h4")
-            if (list_name1.includes(rem.innerText)) {
-                // console.log(list_name2[list_name1.indexOf(rem.innerText)])
-                rem.parentNode.parentNode.classList += list_name2[list_name1.indexOf(rem.innerText)];
+        async function remA(){
+            while (true) {
+                let rem = await addon.tab.waitForElement(".box .box-header h4", {markAsSeen: true,})
+                rem_elements.push(rem.parentNode.parentNode)
+                // let rem = document.createElement("h4")
+                if (list_name1.includes(rem.innerText)) {
+                    // console.log(list_name2[list_name1.indexOf(rem.innerText)])
+                    rem.parentNode.parentNode.classList += list_name2[list_name1.indexOf(rem.innerText)];
+                }
             }
         }
+        remA()
+        addEventListener("keydown", (e)=>{
+            if (e.key == " ") {
+                console.log(rem_elements)
+            }
+        })
     }
-    remA()
-    addEventListener("keydown", (e)=>{
-        if (e.key == " ") {
-            console.log(rem_elements)
-        }
-    })
-
-
-    // testing
-    const pattern = new URLPattern("/*", "https://scratch.mit.edu");
-    console.log(pattern.pathname); // /books
-    console.log(pattern.test(window.location.href)); // true
 }
