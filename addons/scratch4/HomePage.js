@@ -568,12 +568,11 @@ export default async function ({ addon, console, msg }) {
 
     `)
 
-    add(matchesURL("/"), "SA-test", `
-    .activity-ul::before {
-        filter: blur(1px);
-        display: block;
-        background-color: #0000ff;
-        height: 100px;
+    add(matchesURL("/projects/*"), "SA-canvas", `
+    .stage_stage_1fD7k {
+        border: none;
+        margin: 0.0625rem;
+        box-shadow: 0px 0px 10px 10px;
     }
     `)
 
