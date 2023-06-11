@@ -33,7 +33,8 @@ export default async function ({ addon, console, msg }) {
     :root {
         --activity-box-content-max-hight: 450px;
         --box-header-height: 47.594px;
-        --box-shadow: 0px 0px 15px 3px;
+        --box-shadow: 0px 0px 20px -2px;
+        --text-shadow: 0px 0px 9px;
     }
 
     @media (prefers-color-scheme: light) {
@@ -475,8 +476,11 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add(matchesURL("/"), "SA-background", `
+    add(matchesURL("/")||( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ), "SA-background", `
     /* background to website */
+    .project-lower-container {
+        background-color: transparent !important;
+    }
     #view, body {
         background-color: var(--background-color) !important;
     }
@@ -489,7 +493,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add(matchesURL("/"), "SA-search-input", `
+    add(matchesURL("/")||( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ), "SA-search-input", `
     #frc-q-1088, #search-input{
         padding-left: 30px !important;
         padding-right: 30px !important;
@@ -498,7 +502,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add(matchesURL("/"), "SA-password-and-username", `
+    add(matchesURL("/")||( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ), "SA-password-and-username", `
     .input#frc-username-1088, .input#frc-password-1088 {
         border-radius: 100px;
         z-index: 1;
@@ -506,7 +510,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add(matchesURL("/"), "SA-hide-arrow-profile", `
+    add(matchesURL("/")||( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ), "SA-hide-arrow-profile", `
     .user-info::after, .caret, .account-nav_dropdown-caret-position_295CX {
         display: none !important;
     }
@@ -568,11 +572,75 @@ export default async function ({ addon, console, msg }) {
 
     `)
 
-    add(matchesURL("/projects/*"), "SA-canvas", `
+    add( ( ( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ) ), "SA-project-test", `
+    .see-inside-button {
+        background-color: var(--main-blue);
+    }
+    .share-date {
+        color: var(--main-text-color) !important;
+    }
+    .project-title.no-edit, inplace-input, .share-date {
+        text-shadow: var(--text-shadow) var(--main-blue);
+    }
+    .title {
+        margin: auto 0px;
+    }
     .stage_stage_1fD7k {
-        border: none;
-        margin: 0.0625rem;
-        box-shadow: 0px 0px 10px 10px;
+        border: none !important;;
+    }
+    .stage_green-flag-overlay-wrapper_2hUi_ {
+        width: 480px;
+        border: none !important;;
+    }
+    .project-header .avatar {
+        filter: drop-shadow(0px 0px 5px);
+        width: 80px !important;
+        height: 80px !important;
+        padding: 10px;
+    }
+    .comments-container {
+        box-shadow: var(--box-shadow) var(--projects-color-a-5) !important;
+    }
+    .comments-container .comments-header h4 {
+        background-color: var(--projects-color-a-3) !important;
+    }
+    .comments-container .comments-header {
+        background-color: var(--projects-color-a-1) !important;
+    }
+    .comments-container .comments-content {
+        background-color: var(--projects-color-a-2) !important;
+        padding-bottom: 0px;
+    }
+    /* the whole box */
+    .comments-container {
+        background-color: var(--box-gray) !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border: none !important;
+    }
+    /* bottom part of box */
+    .comments-container .comments-root-reply, .comments-container .comments-list {
+        padding-bottom: 0px !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    /* top part of box */
+    .comments-header {
+        height: var(--box-header-height) !important;
+        border: none !important;
+    }
+    /* title on box (h4) */
+    .comments-header h4 {
+        border-radius: 100px;
+        padding: 15px;
+        color: var(--button-text-color) !important;
+        ${ addon.settings.get("BoxIcons") ? "padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages.svg);" : "" }
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        background-size: 40px 40px;
+
+        background-color: var(--projects-color-c-3);
+
     }
     `)
 
