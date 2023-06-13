@@ -112,6 +112,12 @@ export default async function ({ addon, console, msg }) {
             --projects-color-d-3: #e6ac00;
             --projects-color-d-4: #cc9900;
             --projects-color-d-5: #cc990090;
+
+            --projects-color-e-1: #9966ff;
+            --projects-color-e-2: #1f1433;
+            --projects-color-e-3: #8352e5;
+            --projects-color-e-4: #7a52cc;
+            --projects-color-e-5: #7a52cc90;
         }
     }
     `)
@@ -217,6 +223,21 @@ export default async function ({ addon, console, msg }) {
     }
     .SA-d-project .box-content {
         background-color: var(--projects-color-d-2) !important;
+        padding-bottom: 0px;
+    }
+
+    /* SA-e-project */
+    .SA-e-project {
+        box-shadow: var(--box-shadow) var(--projects-color-e-5) !important;
+    }
+    .SA-e-project .box-header h4, .SA-e-project .box-header a{
+        background-color: var(--projects-color-e-3) !important;
+    }
+    .SA-e-project .box-header {
+        background-color: var(--projects-color-e-1) !important;
+    }
+    .SA-e-project .box-content {
+        background-color: var(--projects-color-e-2) !important;
         padding-bottom: 0px;
     }
 
@@ -595,49 +616,17 @@ export default async function ({ addon, console, msg }) {
         height: 80px !important;
         padding: 10px;
     }
+
     .comments-container {
         box-shadow: var(--box-shadow) var(--projects-color-a-5) !important;
-    }
-    .comments-container .comments-header h4 {
-        background-color: var(--projects-color-a-3) !important;
-    }
-    .comments-container .comments-header {
-        background-color: var(--projects-color-a-1) !important;
-    }
-    .comments-container .comments-content {
-        background-color: var(--projects-color-a-2) !important;
-        padding-bottom: 0px;
-    }
-    /* the whole box */
-    .comments-container {
         background-color: var(--box-gray) !important;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         border: none !important;
         padding: 0 !important;
     }
-    .comments-root-reply {
-        padding: 20px 20px 0px 20px;
-    }
-    .comments-list {
-        padding: 20px 20px 0 20px;
-    }
-    /* bottom part of box */
-    .comments-container .comments-root-reply, .comments-container .comments-list {
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-    /* top part of box */
-    .comments-header {
-        height: fit-content !important;
-        border: none !important;
-        border-radius: 10px !important;
-        padding: 8px 20px !important;
-        flex-wrap: unset;
-        border-radius: 10px 10px 0 0 !important;
-    }
-    /* title on box (h4) */
-    .comments-header h4 {
+    .comments-container .comments-header h4 {
+        background-color: var(--projects-color-a-3) !important;
         border-radius: 100px;
         padding: 15px;
         color: var(--button-text-color) !important;
@@ -650,6 +639,94 @@ export default async function ({ addon, console, msg }) {
         line-height: 1.1rem;
         font-size: 1.1rem;
     }
+    .comments-container .comments-header {
+        background-color: var(--projects-color-a-1) !important;
+        height: fit-content !important;
+        border: none !important;
+        border-radius: 10px !important;
+        padding: 8px 20px !important;
+        flex-wrap: unset;
+        border-radius: 10px 10px 0 0 !important;
+    }
+    .comments-container .comments-content {
+        background-color: var(--projects-color-a-2) !important;
+        padding-bottom: 0px;
+    }
+    .comments-root-reply {
+        padding: 20px 20px 0px 20px;
+    }
+    .comments-list {
+        padding: 20px 20px 0 20px;
+    }
+    /* bottom part of box */
+    .comments-container .comments-root-reply, .comments-container .comments-list {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .column {
+        margin-left: 30px;
+    }
+
+    .remix-list {
+        box-shadow: var(--box-shadow) var(--projects-color-e-5) !important;
+        margin-bottom: 30px;
+    }
+    .studio-list {
+        box-shadow: var(--box-shadow) var(--projects-color-c-5) !important;
+    }
+    .remix-list, studio-list {
+        background-color: var(--box-gray) !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border: none !important;
+        padding: 0 !important;
+    }
+    .remix-list .list-header {
+        background-color: var(--projects-color-e-1) !important;
+    }
+    .studio-list .list-header {
+        background-color: var(--projects-color-c-1) !important;
+    }
+    .list-header {
+        height: fit-content !important;
+        border: none !important;
+        padding: 8px 20px !important;
+        flex-wrap: unset;
+        border-radius: 10px 10px 0 0 !important;
+    }
+    .remix-list .list-title {
+        background-color: var(--projects-color-e-3) !important;
+    }
+    .studio-list .list-title {
+        background-color: var(--projects-color-c-3) !important;
+    }
+    .list-title {
+        border-radius: 100px;
+        padding: 15px;
+        color: var(--button-text-color) !important;
+        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages.svg);` : "" }
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        background-size: 40px 40px;
+
+        line-height: 1.1rem;
+        font-size: 1.1rem;
+        margin-left: 0 !important;
+    }
+    .remix-list .thumbnail-column {
+        background-color: var(--projects-color-e-2) !important;
+    }
+    .studio-list .thumbnail-column {
+        background-color: var(--projects-color-c-2) !important;
+    }
+    .thumbnail-column {
+        border-radius: 0px 0px 10px 10px;
+    }
+    .preview .remix-list, .preview .studio-list {
+        flex-direction: unset !important;
+    }
+
     .replies.collapsed>.comment:last-of-type:after {
         background: linear-gradient(rgba(230, 240, 255, 0), var(--box-gray));
     }
