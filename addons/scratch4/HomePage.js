@@ -466,7 +466,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add(addon.settings.get("HideFooter")&&matchesURL("/"), "SA-hide-footer", `
+    add(addon.settings.get("HideFooter")&&(matchesURL("/")||( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ) ), "SA-hide-footer", `
     /* the footer */
     #footer {
         display: none;
@@ -614,25 +614,25 @@ export default async function ({ addon, console, msg }) {
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         border: none !important;
+        padding: 0 !important;
     }
     .comments-root-reply {
-        padding: 20px;
+        padding: 20px 20px 0px 20px;
     }
     .comments-list {
-        padding: 20px;
+        padding: 20px 20px 0 20px;
     }
     /* bottom part of box */
     .comments-container .comments-root-reply, .comments-container .comments-list {
-        padding-bottom: 0px !important;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }
     /* top part of box */
     .comments-header {
-        height: var(--box-header-height) !important;
+        height: fit-content !important;
         border: none !important;
         border-radius: 10px !important;
-        padding: 20px !important;
+        padding: 8px 20px !important;
         flex-wrap: unset;
         border-radius: 10px 10px 0 0 !important;
     }
@@ -647,7 +647,11 @@ export default async function ({ addon, console, msg }) {
         background-size: 40px 40px;
 
         background-color: var(--projects-color-c-3);
-
+        line-height: 1.1rem;
+        font-size: 1.1rem;
+    }
+    .replies.collapsed>.comment:last-of-type:after {
+        background: linear-gradient(rgba(230, 240, 255, 0), var(--box-gray));
     }
     .link.right.messages a {
         background-image: url(${addon.self.dir}/Icons/Messages.svg) !important;
