@@ -5,7 +5,7 @@ export default async function ({ addon, console, msg }) {
     })
 
     let head = await addon.tab.waitForElement("head")
-    async function add(_boolean, _class, _e) {
+    function add(_boolean, _class, _e) {
         if (_boolean) {
             let _element = document.createElement("style")
             _element.className = _class
@@ -127,7 +127,7 @@ export default async function ({ addon, console, msg }) {
         background-image: url(${addon.self.dir}/Icons/QuestionMark.svg);
     }
     .SA-activity .box-header h4{
-    background-image: url(${addon.self.dir}/Icons/WhatIsNew.svg);
+        background-image: url(${addon.self.dir}/Icons/WhatIsNew.svg);
     }
     .SA-scratchNews .box-header h4 {
         background-image: url(${addon.self.dir}/Icons/ScratchNews.svg);
@@ -579,9 +579,6 @@ export default async function ({ addon, console, msg }) {
     .share-date {
         color: var(--main-text-color) !important;
     }
-    .project-title.no-edit, inplace-input, .share-date {
-        text-shadow: var(--text-shadow) var(--main-blue);
-    }
     .title {
         margin: auto 0px;
     }
@@ -593,7 +590,7 @@ export default async function ({ addon, console, msg }) {
         border: none !important;;
     }
     .project-header .avatar {
-        filter: drop-shadow(0px 0px 5px);
+        /* filter: drop-shadow(0px 0px 5px); */
         width: 80px !important;
         height: 80px !important;
         padding: 10px;
@@ -618,6 +615,12 @@ export default async function ({ addon, console, msg }) {
         border-bottom-right-radius: 10px;
         border: none !important;
     }
+    .comments-root-reply {
+        padding: 20px;
+    }
+    .comments-list {
+        padding: 20px;
+    }
     /* bottom part of box */
     .comments-container .comments-root-reply, .comments-container .comments-list {
         padding-bottom: 0px !important;
@@ -628,19 +631,31 @@ export default async function ({ addon, console, msg }) {
     .comments-header {
         height: var(--box-header-height) !important;
         border: none !important;
+        border-radius: 10px !important;
+        padding: 20px !important;
+        flex-wrap: unset;
+        border-radius: 10px 10px 0 0 !important;
     }
     /* title on box (h4) */
     .comments-header h4 {
         border-radius: 100px;
         padding: 15px;
         color: var(--button-text-color) !important;
-        ${ addon.settings.get("BoxIcons") ? "padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages.svg);" : "" }
+        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages.svg);` : "" }
         background-repeat: no-repeat;
         background-position: 10px center;
         background-size: 40px 40px;
 
         background-color: var(--projects-color-c-3);
 
+    }
+    .link.right.messages a {
+        background-image: url(${addon.self.dir}/Icons/Messages.svg) !important;
+        background-size: 80% !important;
+    }
+    .link.right.mystuff a {
+        background-image: url(${addon.self.dir}/Icons/MyStuff.svg) !important;
+        background-size: 80% !important;
     }
     `)
 
