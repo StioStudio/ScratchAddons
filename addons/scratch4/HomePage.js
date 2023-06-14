@@ -73,6 +73,12 @@ export default async function ({ addon, console, msg }) {
             --projects-color-d-3: #e6ac00;
             --projects-color-d-4: #cc9900;
             --projects-color-d-5: #cc990070;
+
+            --projects-color-e-1: #9966ff;
+            --projects-color-e-2: #ebe0ff;
+            --projects-color-e-3: #8352e5;
+            --projects-color-e-4: #7a52cc;
+            --projects-color-e-5: #7a52cc90;
         }
     }
 
@@ -512,6 +518,14 @@ export default async function ({ addon, console, msg }) {
     .inner.mod-splash:not(.inner.mod-splash:nth-of-type(1)) {
         margin-top: 0px;
     }
+    .link.right.messages a {
+        background-image: url(${addon.self.dir}/Icons/Messages.svg) !important;
+        background-size: 80% !important;
+    }
+    .link.right.mystuff a {
+        background-image: url(${addon.self.dir}/Icons/MyStuff.svg) !important;
+        background-size: 80% !important;
+    }
     `)
 
     add(matchesURL("/")||( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ), "SA-search-input", `
@@ -671,9 +685,11 @@ export default async function ({ addon, console, msg }) {
     .remix-list {
         box-shadow: var(--box-shadow) var(--projects-color-e-5) !important;
         margin-bottom: 30px;
+        border-radius: 10px;
     }
     .studio-list {
         box-shadow: var(--box-shadow) var(--projects-color-c-5) !important;
+        border-radius: 10px;
     }
     .remix-list, studio-list {
         background-color: var(--box-gray) !important;
@@ -710,8 +726,8 @@ export default async function ({ addon, console, msg }) {
         background-position: 10px center;
         background-size: 40px 40px;
 
-        line-height: 1.1rem;
-        font-size: 1.1rem;
+        line-height: 1.1rem !important;
+        font-size: 1.1rem !important;
         margin-left: 0 !important;
     }
     .remix-list .thumbnail-column {
@@ -726,17 +742,36 @@ export default async function ({ addon, console, msg }) {
     .preview .remix-list, .preview .studio-list {
         flex-direction: unset !important;
     }
+    .list-header-link {
+        margin-right: 0 !important;
+    }
+    .remix-list .list-header-link a {
+        background-color: var(--projects-color-e-3);
+    }
+    .studio-list .list-header-link a {
+        background-color: var(--projects-color-c-3);
+    }
+    .list-header-link a {
+        background-image: url(${addon.self.dir}/Icons/ViewAll.svg) !important;
+        height: 17.594px;
+        width: 17.594px;
+        border-radius: 100px;
+        padding: 15px;
+        font-size: 0px;
+        float: right;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 40px 40px;
+    }
+    .box-header a:empty {
+        display: none;
+    }
 
     .replies.collapsed>.comment:last-of-type:after {
         background: linear-gradient(rgba(230, 240, 255, 0), var(--box-gray));
     }
-    .link.right.messages a {
-        background-image: url(${addon.self.dir}/Icons/Messages.svg) !important;
-        background-size: 80% !important;
-    }
-    .link.right.mystuff a {
-        background-image: url(${addon.self.dir}/Icons/MyStuff.svg) !important;
-        background-size: 80% !important;
+    .guiPlayer.fullscreen .stage-header_stage-button-icon_3zzFK {
+        background-image: url((${addon.self.dir}/Icons/Player/ProjectFullScreen.svg) !important;
     }
     `)
 
