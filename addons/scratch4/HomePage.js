@@ -130,43 +130,40 @@ export default async function ({ addon, console, msg }) {
 
     add(matchesURL("/"), "SA-ViewAll-icon", `
     .box-header a {
-        background-image: url(${addon.self.dir}/Icons/ViewAll.svg) !important;
+        background-image: url(${addon.self.dir}/Icons/ShowMore/ViewAll.svg) !important;
     }
     `)
 
     add((addon.settings.get("BoxIcons")&&matchesURL("/")), "SA-icons", `
     .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/QuestionMark.svg);
+        background-image: url(${addon.self.dir}/Icons/Undefined/QuestionMark.svg);
     }
     .SA-activity .box-header h4{
-        background-image: url(${addon.self.dir}/Icons/WhatIsNew.svg);
+        background-image: url(${addon.self.dir}/Icons/Follow/WhatIsNew.svg);
     }
     .SA-scratchNews .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/ScratchNews.svg);
+        background-image: url(${addon.self.dir}/Icons/News/ScratchNews.svg);
     }
     .SA-featuredProject .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/FeaturedProjects.svg);
+        background-image: url(${addon.self.dir}/Icons/Project/FeaturedProjects.svg);
     }
     .SA-featuredStudios .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/FeaturedStudios.svg);
+        background-image: url(${addon.self.dir}/Icons/Studio/FeaturedStudios.svg);
     }
     .SA-scratch-design-studio .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/ScratchDesignStudio.svg);
+        background-image: url(${addon.self.dir}/Icons/Studio/ScratchDesignStudio.svg);
     }
     .SA-a-projectsLovedByScratchersFollowing .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/LovedByScratchersImFollowing.svg);
-    }
-    .SA-a-projectsLovedByScratchersFollowing .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/LovedByScratchersImFollowing.svg);
+        background-image: url(${addon.self.dir}/Icons/Follow/LovedByScratchersImFollowing.svg);
     }
     .SA-communityRemixing .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/WhatTheCommunityIsRemixing.svg);
+        background-image: url(${addon.self.dir}/Icons/Remix/WhatTheCommunityIsRemixing.svg);
     }
     .SA-communityLoving .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/WhatTheCommunityIsLoving.svg);
+        background-image: url(${addon.self.dir}/Icons/Love/WhatTheCommunityIsLoving.svg);
     }
     .scratchtoolsCustomStudio .box-header h4 {
-        background-image: url(${addon.self.dir}/Icons/ScratchTools.svg);
+        background-image: url(${addon.self.dir}/Icons/Extra/ScratchTools.svg);
     }
     `)
     
@@ -519,11 +516,11 @@ export default async function ({ addon, console, msg }) {
         margin-top: 0px;
     }
     .link.right.messages a {
-        background-image: url(${addon.self.dir}/Icons/Messages.svg) !important;
+        background-image: url(${addon.self.dir}/Icons/Messages/Messages.svg) !important;
         background-size: 80% !important;
     }
     .link.right.mystuff a {
-        background-image: url(${addon.self.dir}/Icons/MyStuff.svg) !important;
+        background-image: url(${addon.self.dir}/Icons/Folder/MyStuff.svg) !important;
         background-size: 80% !important;
     }
     `)
@@ -598,16 +595,22 @@ export default async function ({ addon, console, msg }) {
     }
     @media (prefers-color-scheme: dark) {
         .thumbnail-remixes:before {
-            background-image: url(${addon.self.dir}/Icons/RemixTypeWhite.svg) !important;
+            background-image: url(${addon.self.dir}/Icons/Remix/RemixTypeWhite.svg) !important;
         }
         .thumbnail-loves:before {
-            background-image: url(${addon.self.dir}/Icons/LoveTypeWhite.svg) !important;
+            background-image: url(${addon.self.dir}/Icons/Love/LoveTypeWhite.svg) !important;
         }
     }
 
     `)
 
     add( ( ( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ) ), "SA-project-test", `
+    *{
+        color: #ffffff !important;
+    }
+    .inplace-input {
+        border: 2px dashed #ffffff88 !important;
+    }
     .see-inside-button {
         background-color: var(--main-blue);
     }
@@ -618,11 +621,7 @@ export default async function ({ addon, console, msg }) {
         margin: auto 0px;
     }
     .stage_stage_1fD7k {
-        border: none !important;;
-    }
-    .stage_green-flag-overlay-wrapper_2hUi_ {
-        width: 480px;
-        border: none !important;;
+        border: none !important;
     }
     .project-header .avatar {
         /* filter: drop-shadow(0px 0px 5px); */
@@ -644,7 +643,7 @@ export default async function ({ addon, console, msg }) {
         border-radius: 100px;
         padding: 15px;
         color: var(--button-text-color) !important;
-        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages.svg);` : "" }
+        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages/Messages.svg);` : "" }
         background-repeat: no-repeat;
         background-position: 10px center;
         background-size: 40px 40px;
@@ -713,15 +712,16 @@ export default async function ({ addon, console, msg }) {
     }
     .remix-list .list-title {
         background-color: var(--projects-color-e-3) !important;
+        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages/Messages.svg);` : "" }
     }
     .studio-list .list-title {
         background-color: var(--projects-color-c-3) !important;
+        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages/Messages.svg);` : "" }
     }
     .list-title {
         border-radius: 100px;
         padding: 15px;
         color: var(--button-text-color) !important;
-        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages.svg);` : "" }
         background-repeat: no-repeat;
         background-position: 10px center;
         background-size: 40px 40px;
@@ -752,7 +752,7 @@ export default async function ({ addon, console, msg }) {
         background-color: var(--projects-color-c-3);
     }
     .list-header-link a {
-        background-image: url(${addon.self.dir}/Icons/ViewAll.svg) !important;
+        background-image: url(${addon.self.dir}/Icons/ShowMore/ViewAll.svg) !important;
         height: 17.594px;
         width: 17.594px;
         border-radius: 100px;
