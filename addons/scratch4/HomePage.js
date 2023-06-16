@@ -605,9 +605,6 @@ export default async function ({ addon, console, msg }) {
     `)
 
     add( ( ( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/")) ) ), "SA-project-test", `
-    *{
-        color: #ffffff !important;
-    }
     .inplace-input {
         border: 2px dashed #ffffff88 !important;
     }
