@@ -134,7 +134,7 @@ export default async function ({ addon, console, msg }) {
     }
     `)
 
-    add((addon.settings.get("BoxIcons")&&matchesURL("/")), "SA-icons", `
+    add((addon.settings.get("BoxIcons")&&(matchesURL("/")||( matchesURL("/projects/*") && (!matchesURL("/projects/*/editor/"))))), "SA-icons", `
     .box-header h4 {
         background-image: url(${addon.self.dir}/Icons/Undefined/QuestionMark.svg);
     }
@@ -163,6 +163,9 @@ export default async function ({ addon, console, msg }) {
         background-image: url(${addon.self.dir}/Icons/Love/WhatTheCommunityIsLoving.svg);
     }
     .scratchtoolsCustomStudio .box-header h4 {
+        background-image: url(${addon.self.dir}/Icons/Extra/ScratchTools.svg);
+    }
+    .scratchtoolsOnline .box-head h4 {
         background-image: url(${addon.self.dir}/Icons/Extra/ScratchTools.svg);
     }
     `)
@@ -709,11 +712,11 @@ export default async function ({ addon, console, msg }) {
     }
     .remix-list .list-title {
         background-color: var(--projects-color-e-3) !important;
-        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages/Messages.svg);` : "" }
+        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Remix/WhatTheCommunityIsRemixing.svg);` : "" }
     }
     .studio-list .list-title {
         background-color: var(--projects-color-c-3) !important;
-        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Messages/Messages.svg);` : "" }
+        ${ addon.settings.get("BoxIcons") ? `padding-left: 50px; background-image: url(${addon.self.dir}/Icons/Studio/ScratchDesignStudio.svg);` : "" }
     }
     .list-title {
         border-radius: 100px;
@@ -769,6 +772,54 @@ export default async function ({ addon, console, msg }) {
     }
     .guiPlayer.fullscreen .stage-header_stage-button-icon_3zzFK {
         background-image: url((${addon.self.dir}/Icons/Player/ProjectFullScreen.svg) !important;
+    }
+    /* SA-d-project */
+    .scratchtoolsOnline {
+        background-color: var(--box-gray) !important;
+        border-bottom-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        border: none !important;
+        box-shadow: var(--box-shadow) var(--projects-color-d-5);
+        margin-top: 32px;
+    }
+    .scratchtoolsOnline .box-head h4 {
+        border-radius: 100px !important;
+        padding: 15px !important;
+        color: var(--button-text-color) !important;
+        background-repeat: no-repeat !important;
+        background-position: 10px center !important;
+        background-size: 40px 40px !important;
+        background-color: var(--projects-color-d-3) !important;
+        display: inline-block !important;
+        float: left !important;
+        line-height: 1.1rem !important;
+        font-size: 1.1rem !important;
+        ${ addon.settings.get("BoxIcons") ? "padding-left: 50px !important;" : "" }
+    }
+    .scratchtoolsOnline .box-head {
+        height: var(--box-header-height) !important;
+        border: none !important;
+        display: block !important;
+        clear: both !important;
+        margin: 0 !important;
+        border-radius: 10px 10px 0 0 !important;
+        padding: 8px 20px !important;
+        overflow: hidden !important;
+        background-color: var(--projects-color-d-1) !important;
+    }
+    .scratchtoolsOnline .box-content {
+        background-color: var(--projects-color-d-2) !important;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 20px !important;
+    }
+    @media only screen and (max-width: 767px) {
+        .preview .preview-row.force-row {
+            flex-direction: column;
+        }
+    }
+    .preview .remix-list .thumbnail-column, .preview .studio-list .thumbnail-column {
+        max-width: none;
     }
     `)
 
