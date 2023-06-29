@@ -1,9 +1,0 @@
-/* the footer */
-#footer {
-    border-top: var(--main-blue);
-    background-color: var(--main-blue);
-    color: var(--footer-text-color);
-}
-#donor {
-    background-color: var(--main-blue);
-}
