@@ -168,6 +168,7 @@ let fuse;
     data() {
       return {
         smallMode: false,
+        devMode: false,
         theme: initialTheme,
         forceEnglishSetting: null,
         forceEnglishSettingInitial: null,
@@ -509,12 +510,12 @@ let fuse;
       manifest._categories[0] = manifest.tags.includes("popup")
         ? "popup"
         : manifest.tags.includes("easterEgg")
-        ? "easterEgg"
-        : manifest.tags.includes("theme")
-        ? "theme"
-        : manifest.tags.includes("community")
-        ? "community"
-        : "editor";
+          ? "easterEgg"
+          : manifest.tags.includes("theme")
+            ? "theme"
+            : manifest.tags.includes("community")
+              ? "community"
+              : "editor";
 
       const addCategoryIfTag = (arr) => {
         let count = 0;
@@ -724,6 +725,10 @@ let fuse;
   }
   window.onresize = resize;
   resize();
+
+  chrome.management.getSelf((info) => {
+    if (info.installType === "development") vue.devMode = true;
+  });
 
   // Konami code easter egg
   let cursor = 0;
