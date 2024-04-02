@@ -1,4 +1,8 @@
+import { isScratchAprilFools24 } from "./april-fools.js";
+
 export default async function ({ addon, console, msg }) {
+  if (await isScratchAprilFools24(addon.tab.redux)) return;
+
   let placeHolderDiv = null;
   let lockObject = null;
   let lockButton = null;
@@ -143,8 +147,6 @@ export default async function ({ addon, console, msg }) {
     }
     addon.self.addEventListener("disabled", () => {
       Blockly.getMainWorkspace().getToolbox().selectedItem_.setSelected(true);
-      // update workspace dimensions
-      Blockly.svgResize(Blockly.getMainWorkspace());
     });
     addon.self.addEventListener("reenabled", () => {
       if (getToggleSetting() === "category" && !addon.settings.get("lockLoad")) {
@@ -152,8 +154,6 @@ export default async function ({ addon, console, msg }) {
         onmouseleave(null, 0);
         toggle = false;
       }
-      // update workspace dimensions
-      Blockly.svgResize(Blockly.getMainWorkspace());
     });
 
     addon.settings.addEventListener("change", () => {
@@ -180,8 +180,6 @@ export default async function ({ addon, console, msg }) {
         }
         Blockly.getMainWorkspace().getToolbox().selectedItem_.setSelected(true);
       }
-      // update workspace dimensions
-      Blockly.svgResize(Blockly.getMainWorkspace());
     });
 
     // category click mode
@@ -226,24 +224,6 @@ export default async function ({ addon, console, msg }) {
       }
       oldStepScrollAnimation.call(this);
     };
-
-    // add flyout size to the workspace dimensions
-    const oldGetMetrics = Blockly.WorkspaceSvg.getTopLevelWorkspaceMetrics_;
-    Blockly.WorkspaceSvg.getTopLevelWorkspaceMetrics_ = function () {
-      const metrics = oldGetMetrics.call(this);
-      if (addon.self.disabled || getToggleSetting() === "hover" || this.RTL) return metrics;
-      if (this.getToolbox()?.flyout_?.getWidth() === 310) {
-        // columns is enabled
-        return metrics;
-      }
-      return {
-        ...metrics,
-        absoluteLeft: metrics.absoluteLeft - 250,
-        viewWidth: metrics.viewWidth + 250,
-      };
-    };
-    if (Blockly.getMainWorkspace())
-      Blockly.getMainWorkspace().getMetrics = Blockly.WorkspaceSvg.getTopLevelWorkspaceMetrics_;
   }
 
   while (true) {
@@ -321,9 +301,6 @@ export default async function ({ addon, console, msg }) {
 
     doOneTimeSetup();
     autoLock();
-    if (getToggleSetting() !== "hover") {
-      // update workspace dimensions
-      Blockly.svgResize(Blockly.getMainWorkspace());
-    }
+    Blockly.svgResize(Blockly.getMainWorkspace());
   }
 }
